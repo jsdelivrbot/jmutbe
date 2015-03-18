@@ -47,6 +47,7 @@ module.exports = function(app, passport) {
   		next();
 	});
 
+
 	//Login Route
 	app.post('/login', function(req, res, next) {
 
@@ -257,6 +258,15 @@ module.exports = function(app, passport) {
 		res.json({message: text});
 
 	});
+
+	//Takes the user to the main page and then they can do what they want from there.
+	app.get('/', function(request, response){
+
+		response.sendFile('./index.html');
+
+
+	});
+
 
 
 

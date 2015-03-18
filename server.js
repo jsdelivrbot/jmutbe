@@ -35,6 +35,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+//The middleware shows express where all the static files are to be delivered.
+app.use(express.static(__dirname + '/FrontEnd'))
+
 //Load Routes =================================================
 require('./app/routes.js')(app,passport); // Loads routes and passport
 
