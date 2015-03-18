@@ -17,7 +17,8 @@ var textbookSchema = new Schema({
 	yearPublished: String,
 	isbn10: String,
 	username: String,
-	course: String,
+	email: String,
+	course: String
 });
 
 

@@ -22,9 +22,9 @@ module.exports = function(app, passport) {
 		activeDuration: 1000 * 60 * 5,
 		cookie: {
 			//domain: '.example.com',
-    		//path: '/book', // cookie will only be sent to requests under '/book'
+    		path: '/book', // cookie will only be sent to requests under '/book'
     		//maxAge: 60000, // duration of the cookie in milliseconds, defaults to duration above
-    		ephemeral: false, // when true, cookie expires when the browser closes
+    		ephemeral: true, // when true, cookie expires when the browser closes
     		httpOnly: true, // when true, cookie is not accessible from javascript
     		//secure: false // when true, cookie will only be sent over SSL. use key 'secureProxy' instead if you handle SSL not in your node process
     		 //change this when we move to a new domain
@@ -75,8 +75,8 @@ module.exports = function(app, passport) {
 			else {
 			req.mySession.user = result.username;
 			req.mySession.email = result.email;
-			console.log(result.username);
-			console.log(result.email);
+			console.log(req.mySession.user);
+			console.log(req.mySession.email);
 			res.json({ message: "has logged in" });
 
 			}
@@ -225,6 +225,8 @@ module.exports = function(app, passport) {
 		textbook.price = req.body.price;
 		textbook.course = req.body.department + " " + req.body.courseNo;
 		textbook.isbn10 = req.body.isbn;
+		textbook.username = req.mySession.user;
+		textbook.email = req.mySession.email;
 
 		//Course object based on courses schema
 		var course = new Course();
