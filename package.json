@@ -1,5 +1,5 @@
 {
-    "name": "JMU Textbook Exchange",
+    "name": "jmutextbookexchange",
     "main": "server.js",
     "description": "a application that allows users to search and find used textbooks.",
     "version": "0.0.1",
