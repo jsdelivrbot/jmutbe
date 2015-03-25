@@ -30,7 +30,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Partial config of passport
-app.use(session({ secret: 'ilovepolishvodka' })); //session secret
+app.use(session({ secret: 'ilovepolishvodka',
+					resave: false,
+					saveUninitialized : false })); //session secret
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -47,5 +49,3 @@ require('./app/routes.js')(app,passport); // Loads routes and passport
 //The listener
 app.listen(port);
 console.log('Magic happens on port ' + port);
-
-
