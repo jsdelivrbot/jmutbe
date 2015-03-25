@@ -32,14 +32,14 @@ module.exports = function(app, passport) {
 	}));
 
 
-	app.use(function(req, res, next) {
-	  // requestKey forces the session information to be
-	  // accessed via forcedSessionKey
-	  if (req.forcedSessionKey.seenyou) {
-	    res.setHeader('X-Seen-You', 'true');
-	  }
-	  next();
-	});
+		app.use(function(req, res, next) {
+		  // requestKey forces the session information to be
+		  // accessed via forcedSessionKey
+		  if (req.mySession.seenyou) {
+		    res.setHeader('X-Seen-You', 'true');
+		  }
+		  next();
+		});
 
 
 	//Login Route
