@@ -2,7 +2,7 @@
 var User = require('../app/Models/users.js');
 var Textbook = require('../app/Models/textbooks.js');
 var Course = require('../app/Models/courses.js');
-var sessions = require("client-sessions");
+//var sessions = require("client-sessions");
 var session  = require('express-session');
 
 module.exports = function(app, passport) {

@@ -21,16 +21,14 @@ mongoose.connect(configDB.url); //connect to DB
 //Logs requests to console
 app.use(morgan('dev'));
 
-//Config of cookieParser
-app.use(cookieParser());
-
 //Configuration that allows usage of BodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Partial config of passport
-app.use(session({ secret: 'ilovepolishvodka' })); //session secret
-app.use(flash());
+app.use(session({ 	secret: 'asijrnf239a#2!^543wklgm*776knfd',
+					resave: false,
+					saveUninitialized : false })); //session secret
 
 //The middleware shows express where all the static files are to be delivered.
 app.use(express.static(__dirname + '/FrontEnd'))
