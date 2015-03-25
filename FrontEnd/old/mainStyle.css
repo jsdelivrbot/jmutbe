@@ -1,0 +1,57 @@
+body {
+	font-family: Helvetica;
+	font-size: 18px;
+	overflow: auto;
+}
+
+#wrapper{
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+#logout #logo{
+	width: 100%;
+	min-height: 20px;
+}
+
+#banner{
+	width: 96%;
+	min-height: 100px;
+	text-align: center;
+}
+
+#topright{
+	list-style: none;
+	margin: 0;
+}
+
+#topright li{
+	float: right;
+	display: block;
+	width: 10%;
+}
+
+img{
+	max-width: 5%;
+	max-height: 5%;
+}
+
+nav ul{
+	list-style: none;
+	margin: 0;
+	padding-left: 50px;
+}
+
+nav ul li{
+	float: left;
+	border: 1px solid black;
+	width: 24%;
+}
+
+nav ul li a{
+	background:blue;
+	display: block;
+	padding: 5% 12%;	
+}
+
+
