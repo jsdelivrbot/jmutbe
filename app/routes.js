@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
 			//domain: '.example.com',
     		//path: '/book', // cookie will only be sent to requests under '/book'
     		//maxAge: 60000, // duration of the cookie in milliseconds, defaults to duration above
-    		ephemeral: true, // when true, cookie expires when the browser closes
+    		//ephemeral: true, // when true, cookie expires when the browser closes
     		httpOnly: true, // when true, cookie is not accessible from javascript
     		secure: false // when true, cookie will only be sent over SSL. use key 'secureProxy' instead if you handle SSL not in your node process
     		 //change this when we move to a new domain
@@ -33,18 +33,12 @@ module.exports = function(app, passport) {
 
 
 	app.use(function(req, res, next) {
-  		
-  		if (req.mySession.seenyou) {
-    		res.setHeader('X-Seen-You', 'true');
-  		} 
-
-  		else {
-    		// setting a property will automatically cause a Set-Cookie response
-    		// to be sent
-    		req.mySession.seenyou = true;
-    		res.setHeader('X-Seen-You', 'false');
-  		}
-  		next();
+	  // requestKey forces the session information to be
+	  // accessed via forcedSessionKey
+	  if (req.forcedSessionKey.seenyou) {
+	    res.setHeader('X-Seen-You', 'true');
+	  }
+	  next();
 	});
 
 
