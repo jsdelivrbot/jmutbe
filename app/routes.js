@@ -3,6 +3,7 @@ var User = require('../app/Models/users.js');
 var Textbook = require('../app/Models/textbooks.js');
 var Course = require('../app/Models/courses.js');
 var sessions = require("client-sessions");
+var session  = require('express-session');
 
 module.exports = function(app, passport) {
 
@@ -15,31 +16,22 @@ module.exports = function(app, passport) {
 	});
 
 	//Client-Sessions Middleware
-	app.use(sessions({
-		cookieName: 'mySession',
-		secret: 'asijrnf239a#2!^543wklgm*776knfd',
-		duration: 24 * 60 * 60 * 1000,
-		activeDuration: 1000 * 60 * 5,
-		cookie: {
-			//domain: '.example.com',
-    		//path: '/book', // cookie will only be sent to requests under '/book'
-    		//maxAge: 60000, // duration of the cookie in milliseconds, defaults to duration above
-    		//ephemeral: true, // when true, cookie expires when the browser closes
-    		httpOnly: true, // when true, cookie is not accessible from javascript
-    		secure: false // when true, cookie will only be sent over SSL. use key 'secureProxy' instead if you handle SSL not in your node process
-    		 //change this when we move to a new domain
-  		} 				
-	}));
+	// app.use(sessions({
+	// 	cookieName: 'mySession',
+	// 	secret: 'asijrnf239a#2!^543wklgm*776knfd',
+	// 	duration: 24 * 60 * 60 * 1000,
+	// 	activeDuration: 1000 * 60 * 5,
+	// 	cookie: {
+	// 		//domain: '.example.com',
+ //    		//path: '/book', // cookie will only be sent to requests under '/book'
+ //    		//maxAge: 60000, // duration of the cookie in milliseconds, defaults to duration above
+ //    		//ephemeral: true, // when true, cookie expires when the browser closes
+ //    		httpOnly: true, // when true, cookie is not accessible from javascript
+ //    		secure: false // when true, cookie will only be sent over SSL. use key 'secureProxy' instead if you handle SSL not in your node process
+ //    		 //change this when we move to a new domain
+ //  		} 				
+	// }));
 
-
-		app.use(function(req, res, next) {
-		  // requestKey forces the session information to be
-		  // accessed via forcedSessionKey
-		  if (req.mySession.seenyou) {
-		    res.setHeader('X-Seen-You', 'true');
-		  }
-		  next();
-		});
 
 
 	//Login Route
@@ -67,10 +59,14 @@ module.exports = function(app, passport) {
 			}
 
 			else {
-			req.mySession.user = result.username;
-			req.mySession.email = result.email;
-			console.log(req.mySession.user);
-			console.log(req.mySession.email);
+			// req.mySession.user = result.username;
+			// req.mySession.email = result.email;
+			// console.log(req.mySession.user);
+			// console.log(req.mySession.email);
+			req.session.user = result.username;
+			req.session.email = result.email;
+			console.log(req.session.user);
+			console.log(req.session.email);
 			res.json({ message: "has logged in" });
 
 			}
@@ -138,7 +134,8 @@ module.exports = function(app, passport) {
 	
 	//logout
 	app.post('/logout', function(req, res) {
-		req.mySession.reset();
+		//req.mySession.reset();
+		req.session.destroy();
 		res.json({ message: 'You have been logged out'});
 	});
 
@@ -219,8 +216,8 @@ module.exports = function(app, passport) {
 		textbook.price = req.body.price;
 		textbook.course = req.body.department + " " + req.body.courseNo;
 		textbook.isbn10 = req.body.isbn;
-		textbook.username = req.mySession.user;
-		textbook.email = req.mySession.email;
+		textbook.username = req.session.user;
+		textbook.email = req.session.email;
 
 		//Course object based on courses schema
 		var course = new Course();
@@ -275,7 +272,7 @@ module.exports = function(app, passport) {
 function isLoggedIn(req, res, next) {
 
 	//if user us authenticated in the session carry on
-	if (!req.mySession.user && !req.mySession.email) {
+	if (!req.session.user && !req.session.email) {
 		res.json({message: "Please log in to use this feature"});
 		console.log("Cookie invalid");
 	}
