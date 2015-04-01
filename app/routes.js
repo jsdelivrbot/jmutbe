@@ -63,8 +63,8 @@ module.exports = function(app, passport) {
 			// req.mySession.email = result.email;
 			// console.log(req.mySession.user);
 			// console.log(req.mySession.email);
-			req.session.user = result.username;
-			req.session.email = result.email;
+			// req.session.user = result.username;
+			// req.session.email = result.email;
 			console.log(req.session.user);
 			console.log(req.session.email);
 			res.json({ message: "has logged in" });
@@ -148,7 +148,7 @@ module.exports = function(app, passport) {
 
 
 	//Search textbook route
-	app.post('/book/search',isLoggedIn, function(req, res) {
+	app.post('/book/search', function(req, res) {
 		var textbook = new Textbook();
 		var title = req.body.title;
 		var author = req.body.author;
@@ -177,7 +177,8 @@ module.exports = function(app, passport) {
 		// console.log(String(query));
 		//Find Functionality - Note: Queries are part of the MODEL not the textbook object. Unlike saves which are saving the object.
 
-		Textbook.find({}).where('title').equals(textbook.title).exec(function(err, result) {
+		//Textbook.find({}).where('title').equals(textbook.title).exec(function(err, result) {
+			Search().titleSearch(textbook.title).exec(function(err, result) {
 			if (err)
 				res.send(err);
 
@@ -198,7 +199,7 @@ module.exports = function(app, passport) {
 	});
 
 	//Add new textbook route
-	app.post('/book/create',isLoggedIn, function(req,res) { 
+	app.post('/book/create', function(req,res) { 
 //---------------------------------------------------This shit works-----------------------------------------------
 		var title = req.body.title;
 		var author = req.body.author;
@@ -218,6 +219,7 @@ module.exports = function(app, passport) {
 		textbook.isbn10 = req.body.isbn;
 		textbook.username = req.session.user;
 		textbook.email = req.session.email;
+		textbook.created_at = new Date();
 
 		//Course object based on courses schema
 		var course = new Course();
@@ -269,6 +271,13 @@ module.exports = function(app, passport) {
 
 };
 
+//Timer that runs auto delete function
+setInterval(function() {
+    autoDeleteTextbooks();
+}, 60 * 1000);
+
+//Miscellaneous Functions/ Prototypes
+
 function isLoggedIn(req, res, next) {
 
 	//if user us authenticated in the session carry on
@@ -280,4 +289,44 @@ function isLoggedIn(req, res, next) {
 		console.log("Cookie worked");
 		next();
 	}
+}
+
+var query = Textbook.find({});
+
+//Creates query syntax for search
+var Search = query.toConstructor();
+
+//Prototype that executes the query with the regex we want.
+Search.prototype.titleSearch = function (title) {
+
+	this.where({ title: new RegExp('^' + title, 'i') })
+	return this;
+}
+
+//Searches for ISBN with regex
+Search.prototype.isbnSearch = function (isbn) {
+
+	this.where({ title: new RegExp('^' + isbn, 'i') })
+	return this;
+}
+
+//Deletes texbooks after one month
+function autoDeleteTextbooks(){
+	var monthAgo = new Date();
+	monthAgo.setMonth(monthAgo.getMonth() - 1);
+
+	console.log('started auto delete process');
+
+	Textbook.find({}).where('created_at').gt(monthAgo).exec(function(err, results) {
+  		if (err) throw err;
+
+  		console.log(results);
+
+  		  // results.remove(function(err) {
+    		// if (err) throw err;
+
+    		console.log('deleted old textbooks')
+    	});
+  	});
+
 }

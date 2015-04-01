@@ -18,39 +18,19 @@ var textbookSchema = new Schema({
 	isbn10: String,
 	username: String,
 	email: String,
-	course: String
+	course: String,
+	created_at: Date
 });
 
 
 
 
-textbookSchema.methods.isbnSearch = function (isbn, cb) {
+// textbookSchema.prototype.likeTitleSearch = function (title) {
 
-// var promise = this.model('textbooks').find().exec;
-// return promise;
+// this.where({ title: new RegExp('^' + title) })
+// return this;
 
-// this.model('textbooks').find().lean().exec(function (err, textbook) {
-//   if (err) return console.error(err);
-//   //output = results;
-//   console.log("in the data return callback" + textbook);
-//   return textbook;
-// });
-
-//this.model('textbooks').find({ isbn10: this.isbn10 }, cb)
-
-// this.model('textbooks').find({ isbn10: this.isbn10 }, callback(err, results)
-// 	if (err) {
-// 		output = error;
-// 	}
-// 	else {
-// 		output = results;
-// 	}
-//
-//);
-
-//this.model('textbooks').where('isbn10', this.isbn10).find(callback);
-
-};
+// };
 
 // textbookSchema.methods.isbnSearch = function (cb) {
 
