@@ -325,8 +325,8 @@ function autoDeleteTextbooks(){
   		  // results.remove(function(err) {
     		// if (err) throw err;
 
-    		console.log('deleted old textbooks')
-    	});
+    		//console.log('deleted old textbooks')
+    	//});
   	});
 
 }
