@@ -35,7 +35,7 @@ function sendLoginPost() {
    		}
 	};
 	
-	xmlhttp.open("POST","http://localhost:8080/login",true);
+	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/login",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 }
@@ -70,7 +70,7 @@ function sendSignupPost() {
    		}
 	};
 	
-	xmlhttp.open("POST","http://localhost:8080/signup",true);
+	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/signup",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 }
@@ -148,7 +148,7 @@ function sendBuyInfo() {
 				var p3 = document.createElement("P");
 				p3.className= "list-group-item-text";
 				p3.setAttribute("id", "ISBN");
-				p3.innerHTML= "ISBN: "+ response.textbook[i].isbn;
+				p3.innerHTML= "ISBN: "+ response.textbook[i].isbn10;
 
 				var p4 = document.createElement("P");
 				p4.className= "list-group-item-text";
@@ -180,7 +180,7 @@ function sendBuyInfo() {
    		}
 	};
 
-	xmlhttp.open("POST","http://localhost:8080/book/search",true);
+	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/book/search",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 	//var response = JSON.parse(xmlhttp.responseText);
@@ -226,7 +226,7 @@ function sendSellInfo() {
    		}
 	};
 
-	xmlhttp.open("POST","http://localhost:8080/book/create",true);
+	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/book/create",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 }
