@@ -34,6 +34,9 @@ a{
 
 .navbar-default .navbar-nav>li>a {
 	color: #450084;
+	width: 90px;
+	padding: 0px; 
+	text-align: center;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
@@ -80,6 +83,26 @@ header p {
 	color:#000000;
 	text-align: center;
 	font-size: 2em;
+}
+
+.footer{
+	position: static;
+  	bottom: 0;
+  	left: 0;
+  	margin-top: 20px;
+  	width: 100%;
+  	height: 40px;
+  	z-index: 3;
+}
+
+.terms{
+	float: right;
+	margin-right: 5%;
+}
+
+#termsFacebook{
+	width: 30px;
+	height: 30px;
 }
 
 /*-- Gradient-- */
@@ -152,11 +175,11 @@ header p {
 /*----Modal----*/
 .modalWrapper{
 	position: fixed;
-	visibility: visible;
 	background-color: rgba(0, 0, 0, 0.8);
 	width: 100%;
 	height: 100%;
 	z-index: 1;
+	visibility: hidden;
 }
 
 .modalBox{
@@ -214,12 +237,14 @@ header p {
 	height: 275px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
+	visibility: hidden;
 }
 
 .loginContent{
 	position: absolute;
 	width: 100%;
 	padding: 15px;
+	visibility: hidden;
 }
 
 .signupContent{
@@ -393,7 +418,14 @@ div.thumbnail{
 	#buy, #sell{
 		float: none;
 		margin-left: 20%;
-	}	
+	}
+
+	.modalBox{
+		position: absolute;
+		width: 60%;
+		top:10%;
+		left:20%;
+	}		
 }
 
 @media (max-width: 600px) {
@@ -420,7 +452,14 @@ div.thumbnail{
 	}	
 	header p {
 		text-align: center;
-	}	
+	}
+
+	.modalBox{
+		position: absolute;
+		width: 80%;
+		top:10%;
+		left:10%;
+	}		
 }
 
 @media (max-width: 300px) {

@@ -29,12 +29,13 @@ function sendLoginPost() {
     		console.log(response);
 
     		if (response.message == "has logged in"){
+    			swal("Welcome!!!", "You are now logged in!", "success");
     			closeModal();
     		}
    		}
 	};
-	//xmlhttp.open("POST","http://localhost:8080/login",true);
-	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/login",true);
+	
+	xmlhttp.open("POST","http://localhost:8080/login",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 }
@@ -62,10 +63,14 @@ function sendSignupPost() {
     		console.log(xmlhttp.responseText);
     		var response = JSON.parse(xmlhttp.responseText);
     		console.log(response);
+
+    		if (response.message == "user created!"){
+    			swal("User Created!!!", "Please Login!", "success");
+    		}
    		}
 	};
-	//xmlhttp.open("POST","http://localhost:8080/signup",true);
-	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/signup",true);
+	
+	xmlhttp.open("POST","http://localhost:8080/signup",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 }
@@ -174,8 +179,8 @@ function sendBuyInfo() {
     		*/
    		}
 	};
-	//xmlhttp.open("POST","http://localhost:8080/book/search",true);
-	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/book/search",true);
+
+	xmlhttp.open("POST","http://localhost:8080/book/search",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 	//var response = JSON.parse(xmlhttp.responseText);
@@ -197,9 +202,10 @@ function sendSellInfo() {
 	var course = document.getElementById("Course").value;
 	var department = document.getElementById("Department").value;
 	var price = document.getElementById("Price").value;
+	var email = document.getElementById("Email").value
 
 	var parameter = "title="+title+"&author="+author+"&edition=" +edition+"&publisher="+publisher+
-		"&year="+year+"&isbn="+isbn+"&courseNo="+course+"&department="+department+"&price="+price;
+		"&year="+year+"&isbn="+isbn+"&courseNo="+course+"&department="+department+"&price="+price+"&email="+email;
 
 		 
 	
@@ -219,8 +225,8 @@ function sendSellInfo() {
     		document.getElementById("createResponse").innerHTML=xmlhttp.responseText;
    		}
 	};
-	//xmlhttp.open("POST","http://localhost:8080/book/create",true);
-	xmlhttp.open("POST","https://jmutextbookexchange.herokuapp.com/book/create",true);
+
+	xmlhttp.open("POST","http://localhost:8080/book/create",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send(parameter);
 }

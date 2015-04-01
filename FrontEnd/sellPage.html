@@ -54,18 +54,6 @@
 	        <li class="active"><a href="#">Sell<span class="sr-only">(current)</span></a></li>
 	        <li><a href="aboutPage.html">About</a></li>
 	      </ul>
-			     
-	      <ul class="nav navbar-nav navbar-right">
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account <span class="caret"></span></a>
-	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#">My Posts</a></li>
-	            <li><a href="#">Messages</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">Log Out</a></li>
-	          </ul>
-	        </li>
-	      </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container -->
 	</nav>
@@ -100,7 +88,7 @@
 
 			<!-- Added divs (edition, course, Department, Publisher, year-->
 			<div class="input-group input-group-lg">
-  			  <span class="input-group-addon glyphicon glyphicon-apple" id="sizing-addon1"></span>
+  			  <span class="input-group-addon glyphicon glyphicon-home" id="sizing-addon1"></span>
   			  <input type="text" class="form-control" placeholder="Department" aria-describedby="sizing-addon1" id="Department">
 			</div>
 			<div class="input-group input-group-lg">
@@ -108,15 +96,15 @@
   			  <input type="text" class="form-control" placeholder="Course Number" aria-describedby="sizing-addon1" id="Course">
 			</div>
 			<div class="input-group input-group-lg">
-  			  <span class="input-group-addon glyphicon glyphicon-apple" id="sizing-addon1"></span>
+  			  <span class="input-group-addon glyphicon glyphicon-duplicate" id="sizing-addon1"></span>
   			  <input type="text" class="form-control" placeholder="Edition" aria-describedby="sizing-addon1" id="Edition">
 			</div>
 			<div class="input-group input-group-lg">
-  			  <span class="input-group-addon glyphicon glyphicon-apple" id="sizing-addon1"></span>
+  			  <span class="input-group-addon glyphicon glyphicon-copyright-mark" id="sizing-addon1"></span>
   			  <input type="text" class="form-control" placeholder="Publisher" aria-describedby="sizing-addon1" id="Publisher">
 			</div>
 			<div class="input-group input-group-lg">
-  			  <span class="input-group-addon glyphicon glyphicon-apple" id="sizing-addon1"></span>
+  			  <span class="input-group-addon glyphicon glyphicon-list-alt" id="sizing-addon1"></span>
   			  <input type="text" class="form-control" placeholder="Year" aria-describedby="sizing-addon1" id="Year">
 			</div>
 			<!-- End Changes for this div -->
@@ -125,17 +113,26 @@
   			  <span class="input-group-addon glyphicon glyphicon-usd" id="sizing-addon1"></span>
   			  <input type="text" class="form-control" placeholder="Price" aria-describedby="sizing-addon1" id="Price">
 			</div>
+			<div class="input-group input-group-lg">
+  			  <span class="input-group-addon glyphicon glyphicon-envelope" id="sizing-addon1"></span>
+  			  <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" id="Email">
+			</div>
 			<button type="button" class="btn btn-primary btn-lg btn-block" id="createPost_Button">Create Post</button>
 		  </div>
 	    </div>	
 	</div>
 	<!--/MAIN CONTENT -->
+
+	<div class= "footer">
+		<a class= "terms" href="#">Terms and Conditions</a>
+	</div>
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src= "js/modalLogin.js"></script>
     <!-- Init for Sell.js -->
     <script type="text/javascript">init();</script>
   </body>

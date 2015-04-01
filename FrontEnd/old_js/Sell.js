@@ -60,7 +60,8 @@ function validateSellInfo(){
 					'<p><b>Author:</b> ' + $("#Author").val() + '</p>' +
 					'<p><b>ISBN:</b> ' + $("ISBN").val() + '</p>' + 
 					'<p><b>Course:</b> ' + $("#Department").val() + $("#Course").val() + '</p>' +
-					'<p><b>Price:</b> ' + $("#Price").val() +'</p></section>');
+					'<p><b>Price:</b> ' + $("#Price").val() +'</p>' +
+					'<p><b>Email:</b> ' + $("#Email").val() +'</p></section>'); 
 
 
 	
