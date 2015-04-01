@@ -3,7 +3,7 @@ var User = require('../app/Models/users.js');
 var Textbook = require('../app/Models/textbooks.js');
 var Course = require('../app/Models/courses.js');
 //var sessions = require("client-sessions");
-var session  = require('express-session');
+//var session  = require('express-session');
 
 module.exports = function(app, passport) {
 
@@ -65,8 +65,8 @@ module.exports = function(app, passport) {
 			// console.log(req.mySession.email);
 			// req.session.user = result.username;
 			// req.session.email = result.email;
-			console.log(req.session.user);
-			console.log(req.session.email);
+			// console.log(req.session.user);
+			// console.log(req.session.email);
 			res.json({ message: "has logged in" });
 
 			}
@@ -217,8 +217,8 @@ module.exports = function(app, passport) {
 		textbook.price = req.body.price;
 		textbook.course = req.body.department + " " + req.body.courseNo;
 		textbook.isbn10 = req.body.isbn;
-		textbook.username = req.session.user;
-		textbook.email = req.session.email;
+		textbook.username = req.body.username;//req.session.user;
+		textbook.email = req.body.email;//req.session.email;
 		textbook.created_at = new Date();
 
 		//Course object based on courses schema
@@ -278,18 +278,18 @@ setInterval(function() {
 
 //Miscellaneous Functions/ Prototypes
 
-function isLoggedIn(req, res, next) {
+// function isLoggedIn(req, res, next) {
 
-	//if user us authenticated in the session carry on
-	if (!req.session.user && !req.session.email) {
-		res.json({message: "Please log in to use this feature"});
-		console.log("Cookie invalid");
-	}
-	else {
-		console.log("Cookie worked");
-		next();
-	}
-}
+// 	//if user us authenticated in the session carry on
+// 	if (!req.session.user && !req.session.email) {
+// 		res.json({message: "Please log in to use this feature"});
+// 		console.log("Cookie invalid");
+// 	}
+// 	else {
+// 		console.log("Cookie worked");
+// 		next();
+// 	}
+// }
 
 var query = Textbook.find({});
 
