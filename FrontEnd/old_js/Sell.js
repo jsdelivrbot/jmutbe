@@ -54,6 +54,14 @@ function getInput(name){
  */
 function validateSellInfo(){
 
+	var title = getInput("Title");
+	var author = getInput("Author");
+	var isbn = getInput("ISBN");
+	var Class = getInput("Course");
+	var major = getInput("Department");
+	var price = getInput("Price");
+	var email = getInput("Email");
+
 	//this creates the string object that will be presented in the alert box.
 	var listResult = ('<section><br><p><b>Title:</b> ' + $("#Title").val() + '</p>' + 
 					'<p><b>Author:</b> ' + $("#Author").val() + '</p>' +
