@@ -28,6 +28,12 @@ function registerEventHandlers(){
 	}, true);	
 }
 
+/**$(document).keypress(function(e) {
+    if(e.which == 13) {
+    	validateSellInfo();
+    }
+});*/
+
 /**
  *When passed a name of the DOM Element it returns its value
  *  
@@ -48,24 +54,17 @@ function getInput(name){
  */
 function validateSellInfo(){
 
-	//these variables may not be needed
-	var title = getInput("Title");
-	var author = getInput("Author");
-	var isbn = getInput("ISBN");
-	var Class = getInput("Course");
-	var major = getInput("Department");
-	var price = getInput("Price");
-
+	//this creates the string object that will be presented in the alert box.
 	var listResult = ('<section><br><p><b>Title:</b> ' + $("#Title").val() + '</p>' + 
 					'<p><b>Author:</b> ' + $("#Author").val() + '</p>' +
-					'<p><b>ISBN:</b> ' + $("ISBN").val() + '</p>' + 
+					'<p><b>ISBN:</b> ' + isbn + '</p>' + 
 					'<p><b>Course:</b> ' + $("#Department").val() + $("#Course").val() + '</p>' +
 					'<p><b>Price:</b> ' + $("#Price").val() +'</p>' +
 					'<p><b>Email:</b> ' + $("#Email").val() +'</p></section>'); 
 
 
-	
-	if (isbn != "" && price != ""){
+	//If statement to ensure the required fields are not empty
+	if (isbn != "" && price != "" && email != ""){
 
 		swal({ 
 			    html:true,	
@@ -89,6 +88,6 @@ function validateSellInfo(){
 	}
 	
 	else {
-		swal("Oops...", "Please make sure ISBN and Price are provided", "error");
+		swal("Oops...", "Please make sure ISBN, Price, and Email are provided", "error");
 	}
 }

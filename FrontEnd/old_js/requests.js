@@ -155,11 +155,17 @@ function sendBuyInfo() {
 				p4.setAttribute("id", "Price");
 				p4.innerHTML= "Price: " + response.textbook[i].price;
 
+				var p5 = document.createElement("P");
+				p4.className= "list-group-item-text";
+				p4.setAttribute("id", "Email");
+				p4.innerHTML= "Email: " + response.textbook[i].email;
+
 				link.appendChild(header);
 				link.appendChild(p1);
 				link.appendChild(p2);
 				link.appendChild(p3);
 				link.appendChild(p4);
+				link.appendChild(p5);
 			}				
 
 			
@@ -202,7 +208,7 @@ function sendSellInfo() {
 	var course = document.getElementById("Course").value;
 	var department = document.getElementById("Department").value;
 	var price = document.getElementById("Price").value;
-	var email = document.getElementById("Email").value
+	var email = document.getElementById("Email").value;
 
 	var parameter = "title="+title+"&author="+author+"&edition=" +edition+"&publisher="+publisher+
 		"&year="+year+"&isbn="+isbn+"&courseNo="+course+"&department="+department+"&price="+price+"&email="+email;

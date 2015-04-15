@@ -36,8 +36,9 @@ $(document).on('click', '#itemResults', function () {
     var listResult = ('<section><br><p>' + $(this).find('#Title').text() + '</p>' + 
 					'<p>' + $(this).find('#Author').text() + '</p>' +
 					'<p>' + $(this).find('#ISBN').text() + '</p>' + 
-					'<p>' + $(this).find('#Course').text() + 
-					'<p>' + $(this).find('#Price').text() +'</p></section>');  
+					'<p>' + $(this).find('#Course').text() + '</p>'+ 
+					'<p>' + $(this).find('#Price').text() +'</p>' +
+					'<p>' + $(this).find('#Email').text() +'</p></section>');   
 
     swal({ 
 			    html: true,	
@@ -47,8 +48,11 @@ $(document).on('click', '#itemResults', function () {
 		}); 
 });
 
-
-
+$("document").keypress(function(e) {
+    if(e.which == 13) {
+    	validateBuyInfo();
+    }
+});
 
 
 
@@ -88,7 +92,7 @@ function validateBuyInfo(){
 		//scrolls the page to results
 		$('html, body').animate({
         	scrollTop: $("#inputs").offset().top
-    	}, 2000);		
+    	}, 500);		
 	}
 	
 	else {

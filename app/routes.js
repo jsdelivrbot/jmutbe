@@ -164,20 +164,6 @@ module.exports = function(app, passport) {
 		textbook.course = req.body.department + " " + req.body.courseNo;
 		textbook.isbn = req.body.isbn;
 
-		//var regex = new RegExp('noodles', 'i'); //--Didn't work keep trying 
-
-		// if (textbook.title != null){
-		// 	query += Textbook.where('title').equals(textbook.title);
-		// };
-
-		// if (textbook.author != null){
-		// 	query += Textbook.where('author').equals(textbook.author);
-		// };
-
-		// console.log(String(query));
-		//Find Functionality - Note: Queries are part of the MODEL not the textbook object. Unlike saves which are saving the object.
-
-		//Textbook.find({}).where('title').equals(textbook.title).exec(function(err, result) {
 			Search().titleSearch(textbook.title).exec(function(err, result) {
 			if (err)
 				res.send(err);
@@ -189,18 +175,11 @@ module.exports = function(app, passport) {
 			
 		});
 
-		//var text = 'Posted the ' + title + " " +author;
-		//res.json({ message: 'hooray! welcome to our api!' });
-
-		// returnedObj = textbook.isbnSearch();
-		// console.log(textbook.isbnSearch());
-		// res.json(textbook.isbnSearch());
-
 	});
 
 	//Add new textbook route
 	app.post('/book/create', function(req,res) { 
-//---------------------------------------------------This shit works-----------------------------------------------
+//---------------------------------------------------This works-----------------------------------------------
 		var title = req.body.title;
 		var author = req.body.author;
 		var major = req.body.department;
@@ -313,20 +292,27 @@ Search.prototype.isbnSearch = function (isbn) {
 //Deletes texbooks after one month
 function autoDeleteTextbooks(){
 	var monthAgo = new Date();
+
 	monthAgo.setMonth(monthAgo.getMonth() - 1);
+
+	console.log(monthAgo);
 
 	console.log('started auto delete process');
 
-	Textbook.find({}).where('created_at').gt(monthAgo).exec(function(err, results) {
+	Textbook.remove({}).where('created_at').lt(monthAgo).exec(function(err, results) {
   		if (err) throw err;
+
+  		else {
 
   		console.log(results);
 
   		  // results.remove(function(err) {
     		// if (err) throw err;
 
-    		//console.log('deleted old textbooks')
-    	//});
+    		// console.log('deleted old textbooks')
+
+    		// });
+  		}
   	});
 
 }
