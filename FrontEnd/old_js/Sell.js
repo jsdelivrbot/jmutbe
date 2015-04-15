@@ -72,7 +72,7 @@ function validateSellInfo(){
 
 
 	//If statement to ensure the required fields are not empty
-	if (isbn != "" && price != "" && email != ""){
+	if (isbn != "" && price != "" && email != "" && title != ""){
 
 		swal({ 
 			    html:true,	
@@ -96,6 +96,6 @@ function validateSellInfo(){
 	}
 	
 	else {
-		swal("Oops...", "Please make sure ISBN, Price, and Email are provided", "error");
+		swal("Oops...", "Please make sure the Title, ISBN, Price, and Email are provided", "error");
 	}
 }
