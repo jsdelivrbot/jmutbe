@@ -250,10 +250,10 @@ module.exports = function(app, passport) {
 
 };
 
-//Timer that runs auto delete function
+//Timer that runs auto delete function every hour
 setInterval(function() {
     autoDeleteTextbooks();
-}, 60 * 1000);
+}, 60 * 60 * 1000);
 
 //Miscellaneous Functions/ Prototypes
 
